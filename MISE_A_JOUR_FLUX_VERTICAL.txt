@@ -1,0 +1,13 @@
+RESELLPILOT 1.4 — AJUSTEMENT INTERFACE
+======================================
+
+Modification demandee :
+- Fil d'actualite affiche en une seule colonne, de haut en bas.
+- Modification appliquee a ResellPilot.exe et ResellPilot_Diagnostic.exe.
+
+Marques :
+- L'explorateur de marques et sa synchronisation restent actifs.
+- Aucun faux identifiant de marque n'a ete ajoute dans l'executable.
+- Le referentiel public actuellement branche dans cette version n'expose pas 57 000 marques verifiees.
+
+Les donnees utilisateur restent dans %APPDATA%\ResellPilot\data.json.

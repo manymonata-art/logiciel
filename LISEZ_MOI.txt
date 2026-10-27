@@ -1,0 +1,56 @@
+RESELLPILOT 1.4 — LIVE 4 SECONDES — VERSION BETA
+=================================================
+Windows 10/11, 64 bits. Application locale, sans abonnement.
+
+DEMARRAGE
+1. Fermez ResellPilot 1.3 depuis Réglages > Quitter complètement.
+2. Exportez une sauvegarde JSON depuis Réglages, avant la mise à jour.
+3. Extrayez TOUT le ZIP, puis lancez ResellPilot.exe.
+4. L'interface s'ouvre dans votre navigateur, mais tourne sur votre PC.
+5. Ouvrez Mes recherches et assurez-vous que les recherches à suivre sont activées.
+6. Dans Réglages, vérifiez que « Actualiser automatiquement mes recherches » est coché.
+7. Dans Réglages > Connexion à Vinted, lancez « Tester la connexion ».
+8. Laissez le programme ResellPilot.exe ouvert pour maintenir la surveillance.
+
+NOUVEAU EN 1.4
+* Intervalle CIBLE fixe de 4 secondes entre deux vérifications d'une même recherche ; aucun réglage de cadence requis.
+* Les anciennes recherches à 30 secondes / 1 minute sont automatiquement migrées à 4 secondes.
+* Planificateur déclenché 4 fois par seconde pour démarrer les recherches arrivées à échéance.
+* Jusqu'à 4 recherches peuvent être analysées simultanément ; les autres attendent leur tour.
+* Les nouveaux résultats enregistrés sont transmis immédiatement à l'interface locale (événements SSE).
+* Retour périodique de secours si la liaison locale aux événements est interrompue.
+* Contrôle des doublons et conservation des filtres sauvegardés.
+* Les limitations HTTP 401 / 403 / 429 et les CAPTCHA entraînent une pause : aucun contournement.
+* Un ancien quota local de vérifications n'arrête plus le surveillant.
+
+LIMITES ESSENTIELLES
+* La fréquence de 4 secondes est une CIBLE : beaucoup de recherches simultanées,
+  des réponses réseau longues ou les pauses imposées par Vinted allongent les délais.
+* Cela NE constitue PAS une connexion push directe à Vinted : l'annonce peut apparaître
+  plus tard dans son catalogue que sa date de publication.
+* La connexion au catalogue Vinted réel depuis votre Windows n'a pas été vérifiée ici.
+* Les pages, formats et conditions d'accès Vinted peuvent évoluer ou interdire l'automatisation.
+* Un signal « moteur local connecté » ne prouve PAS que Vinted est accessible : regarder
+  le code HTTP et l'état de la dernière vérification dans l'interface.
+* Une requête trop fréquente peut être refusée : le moteur respecte les erreurs/pauses du serveur.
+* Aucun compte Vinted ne doit être connecté ; tout achat reste manuel.
+
+DONNEES ET MISE A JOUR
+* Les données sont conservées dans %APPDATA%\ResellPilot\data.json et la mise à jour
+  ne supprime pas les filtres ni les annonces existants.
+* En cas de problème, sauvegardez d'abord %APPDATA%\ResellPilot\data.json.
+* Si rien ne s'ouvre, fermez toute autre instance puis lancez ResellPilot_Diagnostic.exe :
+  cette version affiche les erreurs dans une fenêtre de console.
+* L'exécutable n'est pas signé ; Windows peut demander des vérifications de sécurité.
+
+VERIFICATIONS EFFECTUEES
+* go test ./... : OK
+* go test -race ./... : OK
+* Tests de simulation : arrivée automatique d'une nouvelle annonce au cycle suivant
+  (environ 4 secondes), sans clic, et pause après HTTP 429.
+* Compilation Windows x64 : OK
+* Test d'exécution native sur Windows : NON effectué.
+* Test d'un flux Vinted réel : NON effectué.
+
+Code source de cette version : archive ResellPilot_Code_Source_1.4.zip
+Version : 1.4.0-constant4-beta — 27 octobre 2026
